@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+    printf "Which oc version do you want to switch to?\n\n"
+    echo "Example:  oc-switch 3.11.0"
+    exit 2
+fi
+
+VERSION=$1
+
+if [ -d "/home/endaphelan/bin/oc/$VERSION" ]; then
+    
+    ln -s -f /home/endaphelan/bin/oc/$VERSION/oc /usr/bin/oc
+    echo "oc version switched to $VERSION"
+else
+    echo "oc version $VERSION not found. Please choose from one of the following:"
+    ls "/home/endaphelan/bin/oc"
+    exit 2
+fi
